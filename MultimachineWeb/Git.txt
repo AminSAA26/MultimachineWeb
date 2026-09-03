@@ -1,0 +1,12 @@
+﻿Step 1: Initialize and Commit Your CodeIf you haven't set up Git in your local project folder yet, run these commands:
+
+git init — Initializes a local Git repository in your folder.
+git add . — Stages all your project files to be committed.
+git commit -m "Initial commit" — Saves your staged files locally.
+git branch -M main — Renames your default branch to main (standard for modern Git platforms).
+
+Step 2: Link and Push to the Remote RepositoryCopy the repository 
+URL from your GitHub, GitLab, or Bitbucket page (it looks like https://github.com).
+
+git remote add origin <your-repository-URL> — Links your local repository to the remote website.
+git push -u origin main — Pushes your local code to the remote repository and sets the default tracking branch.

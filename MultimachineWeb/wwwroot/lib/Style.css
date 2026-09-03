@@ -1,0 +1,63 @@
+﻿/* Container must be relative so tooltips position themselves accurately above it */
+.combined-progress-track {
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 16px;
+    background-color: #f1f3f4;
+    border-radius: 8px;
+    overflow: visible; /* CRITICAL: Must be visible so tooltips can float outside the bar */
+}
+
+.progress-segment {
+    height: 100%;
+    position: relative; /* Anchor for the tooltip */
+    cursor: pointer;
+    transition: width 0.4s ease;
+}
+
+    /* --- THE TOOLTIP ENGINE --- */
+
+    /* 1. The Tooltip Box */
+    .progress-segment::after {
+        content: attr(data-tooltip); /* Grabs text directly from JS data attribute */
+        position: absolute;
+        bottom: 130%; /* Positions box perfectly above the bar track */
+        left: 50%;
+        transform: translateX(-50%) scale(0.8);
+        opacity: 0;
+        pointer-events: none; /* Prevents flickering bugs when hovering edges */
+        /* Chart.js Modern Dark Theme Aesthetics */
+        background-color: rgba(44, 62, 80, 0.95);
+        color: #fff;
+        padding: 6px 10px;
+        font-size: 12px;
+        font-family: sans-serif;
+        border-radius: 4px;
+        white-space: nowrap;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+        z-index: 999;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* 2. Tiny Triangle Arrow Indicator below the box */
+    .progress-segment::before {
+        content: '';
+        position: absolute;
+        bottom: 105%;
+        left: 50%;
+        transform: translateX(-50%) scale(0.8);
+        opacity: 0;
+        pointer-events: none;
+        border: 5px solid transparent;
+        border-top-color: rgba(44, 62, 80, 0.95); /* Matches background color */
+        z-index: 999;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* 3. Reveal Animation Trigger on Hover */
+    .progress-segment:hover::after,
+    .progress-segment:hover::before {
+        opacity: 1;
+        transform: translateX(-50%) scale(1); /* Scales up slightly on entry like Chart.js */
+    }

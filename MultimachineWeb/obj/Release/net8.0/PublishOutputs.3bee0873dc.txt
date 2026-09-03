@@ -1,0 +1,7 @@
+C:\VSProject\MultimachineWeb\MultimachineWeb\obj\Release\net8.0\PubTmp\Out\MultimachineWeb.exe
+C:\VSProject\MultimachineWeb\MultimachineWeb\obj\Release\net8.0\PubTmp\Out\appsettings.Development.json
+C:\VSProject\MultimachineWeb\MultimachineWeb\obj\Release\net8.0\PubTmp\Out\appsettings.json
+C:\VSProject\MultimachineWeb\MultimachineWeb\obj\Release\net8.0\PubTmp\Out\MultimachineWeb.dll
+C:\VSProject\MultimachineWeb\MultimachineWeb\obj\Release\net8.0\PubTmp\Out\MultimachineWeb.deps.json
+C:\VSProject\MultimachineWeb\MultimachineWeb\obj\Release\net8.0\PubTmp\Out\MultimachineWeb.runtimeconfig.json
+C:\VSProject\MultimachineWeb\MultimachineWeb\obj\Release\net8.0\PubTmp\Out\MultimachineWeb.pdb

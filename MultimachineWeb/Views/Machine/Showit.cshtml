@@ -1,0 +1,1365 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application & Infrastructure Dashboard</title>
+    <!-- 1. Load jQuery First -->
+    <!-- <script src="https://googleapis.com"></script> -->
+    <!-- Hosted on cdnjs to avoid connection issues -->
+    <!-- <script src="https://cloudflare.com"></script>  -->
+    <!-- <script src="https://jquery.com"></script> -->
+    @* <script src="jquery-4.0.0.min.js"></script> *@
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/chart.js"></script>
+    <link rel="stypesheet" href="~/lib/Style.css" />
+    <!-- 1. Load jQuery First -->
+    <!-- <script src="https://googleapis.com"></script> -->
+    <style>
+        #open-popup {
+            color: blue;
+            text-decoration: underline;
+            cursor: pointer; /* Restores the hand icon on hover */
+        }
+
+        :root {
+            --bg-main: #f8fafc;
+            --panel-bg: #ffffff;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --primary: #3b82f6;
+            --danger: #ef4444;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --border: #e2e8f0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-dark);
+            margin: 0;
+            padding: 24px;
+        }
+
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            margin-bottom: 24px;
+        }
+
+            header h1 {
+                margin: 0 0 4px 0;
+                font-size: 24px;
+                font-weight: 700;
+            }
+
+            header p {
+                margin: 0;
+                color: var(--text-muted);
+                font-size: 14px;
+            }
+
+        /* KPI Cards Grid */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .kpi-card {
+            background: var(--panel-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .kpi-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .kpi-value {
+            font-size: 28px;
+            font-weight: 700;
+            margin-top: 8px;
+        }
+
+        /* Server Specs & Storage Section */
+        .infra-panel {
+            background: var(--panel-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .infra-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-top: 0;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .storage-bar-wrapper {
+            background: #f1f5f9;
+            border-radius: 6px;
+            height: 20px;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            margin-top: 8px;
+        }
+
+        .storage-bar-fill {
+            background: linear-gradient(90deg, var(--primary), #60a5fa);
+            height: 100%;
+            width: 0%;
+            transition: width 0.6s ease;
+        }
+
+        .storage-text-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10px;
+            box-sizing: border-box;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        /* Main Data Table Styling */
+        .table-panel {
+            background: var(--panel-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 13px;
+        }
+
+        th {
+            background-color: #f8fafc;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-muted);
+            font-weight: 600;
+            padding: 12px 16px;
+            white-space: nowrap;
+        }
+
+        td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+            white-space: nowrap;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover td {
+            background-color: #f8fafc;
+        }
+
+        /* Status Indicators */
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .badge-active {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .badge-inactive {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .badge-deployed {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .badge-unknown {
+            background: #f1f5f9;
+            color: #475569;
+        }
+
+        .text-danger {
+            color: var(--danger);
+            font-weight: 600;
+        }
+
+        .text-muted-val {
+            color: #94a3b8;
+            font-style: italic;
+        }
+
+        /*----------------------------------------------------------------*/
+
+        /* Style the cells inside your issue-row */
+        .issue-row td {
+            height: 35px; /* Keeps rows tightly sized */
+            padding: 6px 8px; /* Small padding to keep row small */
+            font-size: 13px;
+            white-space: nowrap; /* Prevents text from breaking into multiple lines */
+            border-bottom: 1px solid #eee;
+            vertical-align: middle;
+        }
+
+        /* Ensure inputs inside the table match the row size */
+        .issue-row input {
+            margin: 0;
+            padding: 2px 4px;
+            box-sizing: border-box;
+        }
+
+
+        /* 2. Control Separate Column Widths */
+        .col-id {
+            width: 80px;
+        }
+
+        .col-desc {
+            width: 250px;
+            max-width: 300px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis; /* Safely clips long text strings */
+        }
+
+        .col-date {
+            width: 160px;
+        }
+
+        .col-status {
+            width: 110px;
+        }
+
+        .col-action {
+            width: 90px;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="dashboard-container">
+        <header>
+            <h1>Infrastructure & App Ecosystem Control Panel</h1>
+            <p>Host Target:  | Environment: </p>
+            @* <p>Host Target: Contabo (156.67.111.2) | Environment: Dev (Maharashtra-IN)</p> *@
+        </header>
+
+        <!-- Metrics Matrix Section -->
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <div class="kpi-label">Total Tracked Elements</div>
+                <div class="kpi-value" id="total-apps">0</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">Active Deployments</div>
+                <div class="kpi-value" id="active-apps" style="color: var(--success);">0</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">Backup Mismatch Alerts</div>
+                <div class="kpi-value" id="backup-alerts" style="color: var(--warning);">0</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">Unresolved Operational Issues</div>
+                <div class="kpi-value" id="unresolved-issues" style="color: var(--danger);">0</div>
+            </div>
+        </div>
+
+        <!-- Storage Resource Metrics Container -->
+        <div class="infra-panel">
+            <div class="infra-title">
+                Main Storage Asset Capacity Profile
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 24px; align-items: center;">
+                <div>
+                    <span style="font-size: 13px; color: var(--text-muted);">Total Capacity Limit:</span>
+                    <strong id="storage-total" style="font-size: 16px; margin-left: 4px;">-</strong>
+                </div>
+                <div>
+                    <span style="font-size: 13px; color: var(--text-muted);">Capacity Utilization Progress:</span>
+                    <div class="storage-bar-wrapper">
+                        <div class="storage-bar-fill" id="storage-slider"></div>
+                        <div class="storage-text-overlay">
+                            <span id="storage-util-pct" style="color: #ffffff; mix-blend-mode: difference;">0%</span>
+                            <span id="storage-avail-gb" style="color: #ffffff; mix-blend-mode: difference;">0 GB Available</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- server and date section  <div class="infra-panel"> -->
+        <div class="infra-panel">
+            <div class="infra-title">
+                Server name and date
+            </div>
+            <div style="display: flex; gap: 15px; align-items: flex-start; margin-bottom: 12px;">
+
+                <div style="margin-bottom: 12px;display: flex; gap: 15px;">
+                    <label style="display:block; font-weight:bold;">Server:</label>
+                    <select id="input-servername" style="width: 150px;border: 1px solid #dadce0;;">
+                        <option value="Contabo">Contabo</option>
+                        <option value="ContaboPlus">ContaboPlus</option>
+                        <option value="Contabo">Contabo</option>
+                    </select>
+                </div>
+
+                <div style="margin-bottom: 12px;display: flex; gap: 15px;">
+                    <label style="display:block; font-weight:bold;">Date:</label>
+                    <input type="date" id="input-rundate" style="width: 150px;border: 1px solid #dadce0;">
+                </div>
+                <div style="margin-bottom: 12px;display: flex; gap: 15px;">
+
+                    <button id="search" style="background:#0066cc; color:#fff; border:none; padding:8px 15px; cursor:pointer;">Search</button>
+                </div>
+
+            </div>
+        </div>
+        <!-- Complete Grid System -->
+        <div class="table-panel">
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Application Ecosystem Name</th>
+                            <th>Running State</th>
+                            <th>Last Backup Execution</th>
+                            <th>Target Storage Destination</th>
+                            <th>Backup Integrity Status</th>
+                            <th>Incident Description</th>
+                            <th>Incident Status</th>
+                            <th>Responsible Engineer</th>
+                        </tr>
+                    </thead>
+                    <tbody id="data-rows">
+                        <!-- Targeted dynamic content insertion point via jQuery -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- The hidden popup overlay -->
+        <div id="my-popup" style="
+         display: none;
+         width: 80%;
+         height: 90%;
+         position: fixed;
+         z-index: 10000;
+         left: 50%;
+         top: 45%;
+         transform: translate(-50%, -50%);
+         background-color: #ffffff;
+         color: #202124;
+         border: 1px solid #dadce0;
+         border-radius: 8px;
+         box-shadow: 0 4px 16px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.05);
+         box-sizing: border-box;
+         padding: 24px;
+         font-family: 'Roboto' , 'Segoe UI' , Arial, sans-serif;
+">
+            @* <div id="data" style="position:relative;width:100%;height:180%;background-color:whitesmoke"> *@
+            <div id="data" style="position:relative;">
+                <div style="margin-bottom: 12px;">
+                    <label id="issuelabel" style="display:block; font-weight:bold;">Description:</label>
+                    @* <textarea id="edit-desc" rows="3" style="width: 100%; box-sizing: border-box;height:200px;border-radius: 8px;box-shadow: 0 4px 16px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.05);"></textarea> *@
+                    <div class="table-wrapper" style="height: 300px;">
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <thead>
+                                <tr>
+                                    <th>RID</th>
+                                    <th>AppID</th>
+                                    <th>AppName</th>
+                                    <th>Description</th>
+                                    <th>Reported_Date</th>
+                                    <th>Reported_Time</th>
+                                    <th>Resolution_Date</th>
+                                    <th>Resolution_Time</th>
+                                    <th>Duration</th>
+                                    <th>Status</th>
+                                    <th>MC_RecordID</th>
+                                    <th>EntryDate</th>
+                                </tr>
+                            </thead>
+                            <tbody id="data-rows-popup">
+                                <!-- Targeted dynamic content insertion point via jQuery -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                @*   <div style="display: flex; gap: 15px; align-items: flex-start; margin-bottom: 12px;">
+
+                <div style="margin-bottom: 12px;">
+                <label style="display:block; font-weight:bold;">Reported Date:</label>
+                <input type="date" id="edit-reported" style="width: 150px;border: 1px solid #dadce0;;">
+                </div>
+
+                <div style="margin-bottom: 12px;">
+                <label style="display:block; font-weight:bold;">Resolution Date:</label>
+                <input type="date" id="edit-resolved" style="width: 150px;border: 1px solid #dadce0;">
+                </div>
+
+                <div style="margin-bottom: 12px;">
+                <label style="display:block; font-weight:bold;">Duration:</label>
+                <input type="text" id="edit-duration" style="width: 100px;border: 1px solid #dadce0;;">
+                </div>
+
+                <div style="margin-bottom: 12px;">
+                <label style="display:block; font-weight:bold;">Status:</label>
+                <select id="edit-status" style="width: 150px;border: 1px solid #dadce0;;">
+                <option value="Open">Open</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Resolved">Resolved</option>
+                </select>
+                </div>
+                </div> *@
+                <hr style="margin-top: 15px;">
+                <div style="text-align: right;">
+                    <button id="close-popup" style="background:#ccc; border:none; padding:8px 15px; cursor:pointer; margin-right:5px;">Cancel</button>
+                    <button id="save-popup" style="background:#0066cc; color:#fff; border:none; padding:8px 15px; cursor:pointer;">Save Changes</button>
+                </div>
+
+            </div>
+            @*   <p>This is your popup content!</p>
+            <div id="tool">
+            <button id="close-popup" style="background-color:whitesmoke;box-shadow: 0 8px 16px 0 rgba(0,0,0,0.6);">Close</button>
+            <button id="save-popup" style="background-color:whitesmoke;box-shadow: 0 8px 16px 0 rgba(0,0,0,0.6);">Save</button>
+            </div> *@
+
+        </div>
+</body>
+<script>
+    activeCount = 0;
+    backupMismatchCount = 0;
+    unresolvedIssuesCount = 0;
+    infrastructureRow = null;
+
+    window.onload = function () {
+
+
+        var jsonRecordID;
+        // Pure structured source dataset matching previous parameters
+        records = [
+            {
+                "jsonRecordID": 24,
+                "Platform": "Windows",
+                "Env": "Dev",
+                "Location_City_Country": "Maharashtra-IN",
+                "Server_Name": "Contabo",
+                "Link_IPAddress": "156.67.111.2",
+                "Application": "APlus",
+                "Last_Backup_Date": "2026-08-17T12:20:19",
+                "Backup_Location": "OneDrive",
+                "Backup_Comparison": "Not Matching",
+                "Storage_Utilization": "",
+                "Available_Storage": "",
+                "Total_Capacity": "",
+                "Running_Status": "Active",
+                "Issue_Description": "No Issue 24",
+                "Issue_Reported_Date": "2026-08-17",
+                "Issue_Resolution_Date": "2026-08-17",
+                "Duration": "",
+                "Resolution_Status": "",
+                "Responsible_Person": "Tester",
+                "Next_Payment": "",
+                "Updates": "",
+                "EnteredDate": "2026-08-17T12:20:33"
+            },
+            {
+                "jsonRecordID": 25,
+                "Platform": "Windows",
+                "Env": "Dev",
+                "Location_City_Country": "Maharashtra-IN",
+                "Server_Name": "Contabo",
+                "Link_IPAddress": "156.67.111.2",
+                "Application": "Tender",
+                "Last_Backup_Date": "2026-08-17T12:20:35",
+                "Backup_Location": "OneDrive",
+                "Backup_Comparison": "Not Matching",
+                "Storage_Utilization": "",
+                "Available_Storage": "",
+                "Total_Capacity": "",
+                "Running_Status": "Active",
+                "Issue_Description": "No Issue 25",
+                "Issue_Reported_Date": "2026-08-17",
+                "Issue_Resolution_Date": "2026-08-17",
+                "Duration": "",
+                "Resolution_Status": "",
+                "Responsible_Person": "Tester",
+                "Next_Payment": "",
+                "Updates": "",
+                "EnteredDate": "2026-08-17T12:20:45"
+            },
+            {
+                "jsonRecordID": 26,
+                "Platform": "Windows",
+                "Env": "Dev",
+                "Location_City_Country": "Maharashtra-IN",
+                "Server_Name": "Contabo",
+                "Link_IPAddress": "156.67.111.2",
+                "Application": "VibeOP",
+                "Last_Backup_Date": "2026-08-17T12:20:51",
+                "Backup_Location": "OneDrive",
+                "Backup_Comparison": "Not Matching",
+                "Storage_Utilization": "",
+                "Available_Storage": "",
+                "Total_Capacity": "",
+                "Running_Status": "Active",
+                "Issue_Description": "No Issue 26",
+                "Issue_Reported_Date": "2026-08-17",
+                "Issue_Resolution_Date": "2026-08-17",
+                "Duration": "",
+                "Resolution_Status": "",
+                "Responsible_Person": "Tester",
+                "Next_Payment": "",
+                "Updates": "",
+                "EnteredDate": "2026-08-17T12:20:52"
+            },
+            {
+                "jsonRecordID": 27,
+                "Platform": "Windows",
+                "Env": "Dev",
+                "Location_City_Country": "Maharashtra-IN",
+                "Server_Name": "Contabo",
+                "Link_IPAddress": "156.67.111.2",
+                "Application": "VibeDevv1",
+                "Last_Backup_Date": "2026-08-17T12:20:55",
+                "Backup_Location": "OneDrive",
+                "Backup_Comparison": "Not Matching",
+                "Storage_Utilization": "",
+                "Available_Storage": "",
+                "Total_Capacity": "",
+                "Running_Status": "Active",
+                "Issue_Description": "No Issue 27",
+                "Issue_Reported_Date": "2026-08-17",
+                "Issue_Resolution_Date": "2026-08-17",
+                "Duration": "",
+                "Resolution_Status": "",
+                "Responsible_Person": "Tester",
+                "Next_Payment": "",
+                "Updates": "",
+                "EnteredDate": "2026-08-17T12:20:57"
+            },
+            {
+                "jsonRecordID": 28,
+                "Platform": "Windows",
+                "Env": "Dev",
+                "Location_City_Country": "Maharashtra-IN",
+                "Server_Name": "Contabo",
+                "Link_IPAddress": "156.67.111.2",
+                "Application": "VIbeUAT",
+                "Last_Backup_Date": "2026-08-17T12:21:01",
+                "Backup_Location": "OneDrive",
+                "Backup_Comparison": "Not Matching",
+                "Storage_Utilization": "",
+                "Available_Storage": "",
+                "Total_Capacity": "",
+                "Running_Status": "NotActive",
+                "Issue_Description": "No Issue 28",
+                "Issue_Reported_Date": "2026-08-17",
+                "Issue_Resolution_Date": "2026-08-17",
+                "Duration": "",
+                "Resolution_Status": "",
+                "Responsible_Person": "Tester",
+                "Next_Payment": "",
+                "Updates": "",
+                "EnteredDate": "2026-08-17T12:21:06"
+            },
+            {
+                "jsonRecordID": 29,
+                "Platform": "Windows",
+                "Env": "Dev",
+                "Location_City_Country": "Maharashtra-IN",
+                "Server_Name": "Contabo",
+                "Link_IPAddress": "156.67.111.2",
+                "Application": "DocAi",
+                "Last_Backup_Date": "2026-08-17T12:21:09",
+                "Backup_Location": "OneDrive",
+                "Backup_Comparison": "Not Matching",
+                "Storage_Utilization": "",
+                "Available_Storage": "",
+                "Total_Capacity": "",
+                "Running_Status": "Active",
+                "Issue_Description": "No Issue 29",
+                "Issue_Reported_Date": "2026-08-17",
+                "Issue_Resolution_Date": "2026-08-17",
+                "Duration": "",
+                "Resolution_Status": "",
+                "Responsible_Person": "Tester",
+                "Next_Payment": "",
+                "Updates": "",
+                "EnteredDate": "2026-08-17T12:21:12"
+            },
+            {
+                "jsonRecordID": 30,
+                "Platform": "Windows",
+                "Env": "Dev",
+                "Location_City_Country": "Maharashtra-IN",
+                "Server_Name": "Contabo",
+                "Link_IPAddress": "156.67.111.2",
+                "Application": "SAA",
+                "Last_Backup_Date": "2026-08-17T12:21:15",
+                "Backup_Location": "OneDrive",
+                "Backup_Comparison": "Not Matching",
+                "Storage_Utilization": "",
+                "Available_Storage": "",
+                "Total_Capacity": "",
+                "Running_Status": "Active",
+                "Issue_Description": "No Issue 30",
+                "Issue_Reported_Date": "2026-08-17",
+                "Issue_Resolution_Date": "2026-08-17",
+                "Duration": "",
+                "Resolution_Status": "",
+                "Responsible_Person": "Tester",
+                "Next_Payment": "",
+                "Updates": "",
+                "EnteredDate": "2026-08-17T12:21:19"
+            },
+            {
+                "jsonRecordID": 31,
+                "Platform": "Windows",
+                "Env": "Dev",
+                "Location_City_Country": "Maharashtra-IN",
+                "Server_Name": "Contabo",
+                "Link_IPAddress": "156.67.111.2",
+                "Application": "ART",
+                "Last_Backup_Date": "2026-08-17T12:22:35",
+                "Backup_Location": "OneDrive",
+                "Backup_Comparison": "Not Matching",
+                "Storage_Utilization": "",
+                "Available_Storage": "",
+                "Total_Capacity": "",
+                "Running_Status": "Active",
+                "Issue_Description": "No Issue 31",
+                "Issue_Reported_Date": "2026-08-17",
+                "Issue_Resolution_Date": "2026-08-17",
+                "Duration": "",
+                "Resolution_Status": "",
+                "Responsible_Person": "Tester",
+                "Next_Payment": "",
+                "Updates": "",
+                "EnteredDate": "2026-08-17T12:22:36"
+            },
+            {
+                "jsonRecordID": 32,
+                "Platform": "Windows",
+                "Env": "Dev",
+                "Location_City_Country": "Maharashtra-IN",
+                "Server_Name": "Contabo",
+                "Link_IPAddress": "156.67.111.2",
+                "Application": "ADS",
+                "Last_Backup_Date": "2026-08-17T12:22:38",
+                "Backup_Location": "OneDrive",
+                "Backup_Comparison": "Not Matching",
+                "Storage_Utilization": "",
+                "Available_Storage": "",
+                "Total_Capacity": "",
+                "Running_Status": "Active",
+                "Issue_Description": "No Issue 32",
+                "Issue_Reported_Date": "2026-08-17",
+                "Issue_Resolution_Date": "2026-08-17",
+                "Duration": "",
+                "Resolution_Status": "",
+                "Responsible_Person": "Tester",
+                "Next_Payment": "",
+                "Updates": "",
+                "EnteredDate": "2026-08-17T12:22:39"
+            },
+            {
+                "jsonRecordID": 33,
+                "Platform": "Windows",
+                "Env": "Dev",
+                "Location_City_Country": "Maharashtra-IN",
+                "Server_Name": "Contabo",
+                "Link_IPAddress": "156.67.111.2",
+                "Application": "Finturea",
+                "Last_Backup_Date": "2026-08-17T12:22:43",
+                "Backup_Location": "OneDrive",
+                "Backup_Comparison": "Not Matching",
+                "Storage_Utilization": "",
+                "Available_Storage": "",
+                "Total_Capacity": "",
+                "Running_Status": "NotActive",
+                "Issue_Description": "No Issue 33",
+                "Issue_Reported_Date": "2026-08-17",
+                "Issue_Resolution_Date": "2026-08-17",
+                "Duration": "",
+                "Resolution_Status": "",
+                "Responsible_Person": "Tester",
+                "Next_Payment": "",
+                "Updates": "",
+                "EnteredDate": "2026-08-17T12:22:44"
+            },
+            {
+                "jsonRecordID": 34,
+                "Platform": "Windows",
+                "Env": "Dev",
+                "Location_City_Country": "Maharashtra-IN",
+                "Server_Name": "Contabo",
+                "Link_IPAddress": "156.67.111.2",
+                "Application": "SERVER",
+                "Last_Backup_Date": "2026-08-17T12:22:46",
+                "Backup_Location": "OneDrive",
+                "Backup_Comparison": "Not Matching",
+                "Storage_Utilization": "  91.4%",
+                "Available_Storage": "    20.34",
+                "Total_Capacity": "   237.36",
+                "Running_Status": "NotActive",
+                "Issue_Description": "No Issue 34",
+                "Issue_Reported_Date": "2026-08-17",
+                "Issue_Resolution_Date": "2026-08-17",
+                "Duration": "",
+                "Resolution_Status": "",
+                "Responsible_Person": "Tester",
+                "Next_Payment": "",
+                "Updates": "",
+                "EnteredDate": "2026-08-17T12:22:48"
+            },
+            {
+                "jsonRecordID": 35,
+                "Platform": "Windows",
+                "Env": "Dev",
+                "Location_City_Country": "Maharashtra-IN",
+                "Server_Name": "Contabo",
+                "Link_IPAddress": "156.67.111.2",
+                "Application": "MCPVibe",
+                "Last_Backup_Date": "2026-08-17T12:22:50",
+                "Backup_Location": "OneDrive",
+                "Backup_Comparison": "Not Matching",
+                "Storage_Utilization": "",
+                "Available_Storage": "",
+                "Total_Capacity": "",
+                "Running_Status": "NotActive",
+                "Issue_Description": "No Issue 35",
+                "Issue_Reported_Date": "2026-08-17",
+                "Issue_Resolution_Date": "2026-08-17",
+                "Duration": "",
+                "Resolution_Status": "",
+                "Responsible_Person": "Tester",
+                "Next_Payment": "",
+                "Updates": "",
+                "EnteredDate": "2026-08-17T12:22:51"
+            },
+            {
+                "jsonRecordID": 36,
+                "Platform": "Windows",
+                "Env": "Dev",
+                "Location_City_Country": "Maharashtra-IN",
+                "Server_Name": "Contabo",
+                "Link_IPAddress": "156.67.111.2",
+                "Application": "MCPVibeDev",
+                "Last_Backup_Date": "2026-08-17T12:22:53",
+                "Backup_Location": "OneDrive",
+                "Backup_Comparison": "Not Matching",
+                "Storage_Utilization": "",
+                "Available_Storage": "",
+                "Total_Capacity": "",
+                "Running_Status": "NotActive",
+                "Issue_Description": "No Issue 36",
+                "Issue_Reported_Date": "2026-08-17",
+                "Issue_Resolution_Date": "2026-08-17",
+                "Duration": "",
+                "Resolution_Status": "",
+                "Responsible_Person": "Tester",
+                "Next_Payment": "",
+                "Updates": "",
+                "EnteredDate": "2026-08-17T12:23:00"
+            },
+            {
+                "jsonRecordID": 37,
+                "Platform": "Windows",
+                "Env": "Dev",
+                "Location_City_Country": "Maharashtra-IN",
+                "Server_Name": "Contabo",
+                "Link_IPAddress": "156.67.111.2",
+                "Application": "MCPJIRA",
+                "Last_Backup_Date": "2026-08-17T12:23:03",
+                "Backup_Location": "OneDrive",
+                "Backup_Comparison": "Not Matching",
+                "Storage_Utilization": "",
+                "Available_Storage": "",
+                "Total_Capacity": "",
+                "Running_Status": "NotActive",
+                "Issue_Description": "No Issue 37",
+                "Issue_Reported_Date": "2026-08-17",
+                "Issue_Resolution_Date": "2026-08-17",
+                "Duration": "",
+                "Resolution_Status": "",
+                "Responsible_Person": "Tester",
+                "Next_Payment": "",
+                "Updates": "",
+                "EnteredDate": "2026-08-17T12:23:04"
+            }
+        ]
+
+
+        records = [];
+
+
+
+        let activeCount = 0; let backupMismatchCount = 0;
+        let unresolvedIssuesCount = 0;
+        let infrastructureRow = records.find(r => r.Application === "SERVER");
+        // Dynamically compute KPIs
+        records.forEach(item => {
+            let cleanStatus = item.Running_Status ? item.Running_Status.trim() : "NULL";
+            if (cleanStatus === "Active") activeCount++;
+            if (item.Backup_Comparison === "Not Matching") backupMismatchCount++;
+            if (item.Resolution_Status === "NOT FIXED") unresolvedIssuesCount++;
+
+            // Format standard table values cleanly
+            let statusBadge = '';
+            if (cleanStatus === 'Active') statusBadge = 'Active';
+            else if (cleanStatus === 'Inactive') statusBadge = 'Inactive';
+            else if (cleanStatus === 'Not Deployed') statusBadge = 'Not Deployed';
+            else statusBadge = 'Unset';
+
+            let backupDate = item.Last_Backup_Date ? item.Last_Backup_Date.split(' ')[0] : 'No Backup';
+            let issueDesc = item.Issue_Description ? `<span class="text-danger">${item.Issue_Description}</span>` : 'Clear';
+            let resolutionBadge = item.Resolution_Status === "NOT FIXED" ? 'Not Fixed' : item.Resolution_Status;
+
+            // Generate clean row layout
+            let tableRow = `<tr>
+                                                            <td>${item.jsonRecordID}</td>
+                                                            <td><strong>${item.Application}</strong></td>
+                                                            <td>${statusBadge}</td> <td>${backupDate}</td>
+                                                            <td>${item.Backup_Location}</td>
+                                                            <td><span style="color: var(--warning); font-weight:600;">${item.Backup_Comparison}</span></td>
+                                                            <td><a class="open-popup" role="button" tabindex="0" jsonid=${item.jsonRecordID}>Click to view info</a> </td>
+                                                            <td>${resolutionBadge}</td>
+                                                            <td>${item.Responsible_Person}</td>
+                                                            </tr>`;
+            $('#data-rows').append(tableRow);
+        });
+
+        // Set text content for main KPI boxes
+        $('#total-apps').text(records.length);
+        $('#active-apps').text(activeCount);
+        $('#backup-alerts').text(backupMismatchCount);
+        $('#unresolved-issues').text(unresolvedIssuesCount);
+
+        // Inject computed storage metadata profiles
+        if (infrastructureRow) {
+            $('#storage-total').text(infrastructureRow.Total_Capacity + " GB");
+            $('#storage-util-pct').text(infrastructureRow.Storage_Utilization);
+            $('#storage-avail-gb').text(infrastructureRow.Available_Storage + " GB Free");
+            $('#storage-slider').css('width', infrastructureRow.Storage_Utilization);
+        }
+        <!-- }); -->
+            <!-- }); -->
+
+
+                // Show the popup on click
+                $('.open-popup').on('click', function () {
+                    //alert('h');
+                    let jsonid = $(this).attr('jsonid');
+                    console.log(jsonid);
+                    jsonRecordID = jsonid;
+                    for (i = 0; i < records.length; i++) {
+                        if (records[i].jsonRecordID == jsonid) {
+                            $("#edit-desc").text(records[i].Issue_Description);
+                            $("#edit-reported").val(records[i].Issue_Reported_Date);
+                            $("#edit-resolved").val(records[i].Issue_Resolution_Date);
+                        }
+                    }
+                    $('#my-popup').fadeIn();
+                });
+
+
+
+
+    // Hide the popup when clicking the close button
+    $('#close-popup').on('click', function () {
+
+        $('#my-popup').fadeOut();
+    });
+    $('#save-popup').on('click', function () {
+        alert('save');
+        //let jsonid = $(this).attr('jsonid');
+        let updatedData = {
+            "jsonRecordID": jsonRecordID,///parseInt($('#edit-row-id').val()), // Ensure numeric ID
+            "Platform": "Windows",
+            "Env": "Dev",
+            "Location_City_Country": "Maharashtra-IN",
+            "Server_Name": "Contabo",
+            "Link_IPAddress": "156.67.111.2",
+            "Application": "MCPJIRA",
+            "Last_Backup_Date": "2026-08-14T18:29:14",
+            "Backup_Location": "OneDrive",
+            "Backup_Comparison": "Not Matching",
+            "Storage_Utilization": "",
+            "Available_Storage": "",
+            "Total_Capacity": "",
+            "Running_Status": "NotActive",
+
+            // Dynamically captured values from your Google-styled popup inputs:
+            "Issue_Description": $('#edit-desc').val(),
+            "Issue_Reported_Date": $('#edit-reported').val() || null, // Sends null if empty
+            "Issue_Resolution_Date": $('#edit-resolved').val() || null,
+            "Duration": $('#edit-duration').val(),
+            "Resolution_Status": $('#edit-status').val(),
+
+            "Responsible_Person": "Tester",
+            "Next_Payment": "",
+            "Updates": "",
+            "EnteredDate": "2026-08-14T18:29:14"
+        };
+        $.ajax({
+            url: '/api/Multimachine/update',         // Replace with your real MVC controller routing path
+            type: 'POST',
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            data: JSON.stringify(updatedData),  // Converts JS object into clean JSON string
+            success: function (response) {
+                // Fires if HTTP status code is 200 OK
+                alert('Data saved successfully!');
+                $('#my-popup').fadeOut(200);
+
+                // Optional: Refresh your data table row on screen here
+            },
+            error: function (xhr, status, error) {
+                // Fires if endpoint fails (e.g. 400 Bad Request, 500 Internal Error)
+                console.error("API Error details:", xhr.responseText);
+                alert('Failed to save changes. Please try again.');
+            }
+        });
+
+
+    });
+
+
+
+    // Listen for the click event on your search button
+    $('#search').on('click', function () {
+
+        // 1. Collect filter values from your input text/date boxes
+        let server = $('#input-servername').val(); // Example input selector
+        let date = $('#input-rundate').val();       // Example date/text selector
+        alert(server + "    " + date);
+        //return;
+        // 2. Fire the asynchronous GET request
+        $.ajax({
+            url: '/api/Multimachine/get', // Full route based on your controller base
+            type: 'GET',
+            data: {
+                servername: server, // Key names must match C# parameter names exactly
+                rundate: date
+            },
+            dataType: 'json',
+            success: function (jsonResponse) {
+                console.log("Data received from API:", jsonResponse);
+                window._JSON = jsonResponse;
+                if (window._JSON.message == '') { 
+                    d = $(".dashboard-container");
+                    d[0].firstElementChild.childNodes[3].innerText = `Host Target: ${_json_update[0].Server_Name}  (${_json_update[0].Link_IPAddress}) | Environment: ${_json_update[0].Env} (${_json_update[0].Location_City_Country}) changed`;
+                    $("#total-apps").text(0);
+                    $("#active-apps").text(0);
+                    $("#backup-alerts").text(0);
+                    //$("#unresolved-issues").text(_json_update.filter(m => m.IssuesList.length > 0).length);
+                    $("#unresolved-issues").text(0);
+
+                    $('#data-rows').empty();  } else { update(); }
+                //update();
+                // Clear your table body and rebuild your data grid rows here...
+                // Example: buildTableRows(jsonResponse);
+            },
+            error: function (xhr, status, error) {
+                console.error("Search failed:", xhr.responseText);
+                alert("Could not fetch filtered machine logs.");
+            }
+        });
+    });
+
+          };
+    //let mypiechart = null;
+
+    function update() {
+        _json_update = JSON.parse(_JSON.message);
+        //Host Target: Contabo (156.67.111.2) | Environment: Dev (Maharashtra-IN)
+        d = $(".dashboard-container");
+        d[0].firstElementChild.childNodes[3].innerText = `Host Target: ${_json_update[0].Server_Name}  (${_json_update[0].Link_IPAddress}) | Environment: ${_json_update[0].Env} (${_json_update[0].Location_City_Country}) changed`;
+        $("#total-apps").text(_json_update.length);
+        $("#active-apps").text(_json_update.filter(m => m.Running_Status == 'Active').length);
+        $("#backup-alerts").text(_json_update.filter(m => m.Backup_Comparison == 'Not Matching').length);
+        //$("#unresolved-issues").text(_json_update.filter(m => m.IssuesList.length > 0).length);
+        $("#unresolved-issues").text(_json_update.filter(m => m.IssuesList.length > 0).length);
+
+        //////////////////////////////////////////
+        ////
+        var jsonRecordID;
+        // Pure structured source dataset matching previous parameters
+        records = _json_update;
+
+
+
+        let activeCount = 0;
+        let backupMismatchCount = 0;
+        let unresolvedIssuesCount = 0;
+        let infrastructureRow = records.find(r => r.Application === "SERVER");
+        $('#data-rows').empty();
+        // Dynamically compute KPIs
+        records.forEach(item => {
+            let cleanStatus = item.Running_Status ? item.Running_Status.trim() : "NULL";
+            if (cleanStatus === "Active") activeCount++;
+            if (item.Backup_Comparison === "Not Matching") backupMismatchCount++;
+            if (item.Resolution_Status === "NOT FIXED") unresolvedIssuesCount++;
+            if (item.IssuesList.length > 0) unresolvedIssuesCount += item.IssuesList.length;
+
+            // Format standard table values cleanly
+            let statusBadge = '';
+            if (cleanStatus === 'Active') statusBadge = 'Active';
+            else if (cleanStatus === 'Inactive') statusBadge = 'Inactive';
+            else if (cleanStatus === 'Not Deployed') statusBadge = 'Not Deployed';
+            else statusBadge = 'Unset';
+
+            let backupDate = item.Last_Backup_Date ? item.Last_Backup_Date.split(' ')[0] : 'No Backup';
+            let issueDesc = item.Issue_Description ? `<span class="text-danger">${item.Issue_Description}</span>` : 'Clear';
+            let resolutionBadge = item.Resolution_Status === "NOT FIXED" ? 'Not Fixed' : item.Resolution_Status;
+
+            //<div style="width: 50px; height: 50px; margin: auto;"> <canvas id="IssuesPieChart_${item.jsonRecordID}" > </canvas>        < /div>
+
+            // Generate clean row layout
+            let tableRow = `<tr>
+                                                                <td>${item.jsonRecordID}</td>
+                                                                <td><strong>${item.Application}</strong></td>
+                                                                <td>${statusBadge}</td> <td>${backupDate}</td>
+                                                                <td>${item.Backup_Location}</td>
+                                                                <td><span style="color: var(--warning); font-weight:600;">${item.Backup_Comparison}</span></td>
+                                                                <td><a class="open-popup" role="button" tabindex="0" jsonid=${item.jsonRecordID}>Click to view info</a> </td>
+                                                                <td>
+                                                                    <div class="combined-progress-track">
+                                                                    <div id="open-bar_${item.jsonRecordID}" class="progress-segment open-segment" style="background-color: #dc3545; height: 5px; width: 0%; border-radius: 4px; transition: width 0.5s ease;" data-tooltip=""></div>
+                                                                    <div id="resolved-bar_${item.jsonRecordID}" class="progress-segment resolved-segment" style="background-color: #28a745; height: 5px; width: 0%; border-radius: 4px; transition: width 0.5s ease;" data-tooltip=""></div>
+                                                                    </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div style="width: 50px; height: 50px; margin: auto;"> 
+                                                                        <canvas id="IssuesPieChart_${item.jsonRecordID}" > </canvas>
+                                                                        </div>
+                                                                    </td>
+                                                                <td>${resolutionBadge}</td>
+                                                                
+
+                                                                </tr>`;
+
+
+            $('#data-rows').append(tableRow);
+        });
+        console.log('activeCount is ' + activeCount);
+        console.log('backupMismatchCount is ' + backupMismatchCount);
+        console.log('unresolvedIssuesCount is ' + unresolvedIssuesCount);
+        console.log('infrastructureRow is ' + infrastructureRow);
+
+        // Set text content for main KPI boxes
+        $('#total-apps').text(records.length);
+        $('#active-apps').text(activeCount);
+        console.log('activeCount is inside ' + activeCount);
+        $('#backup-alerts').text(backupMismatchCount);
+        $('#unresolved-issues').text(unresolvedIssuesCount);
+        console.log('unresolvedIssuesCount is inside ' + unresolvedIssuesCount);
+
+        $('#storage-util-pct').text('0%');
+        $('#storage-slider').css('width', '0%');
+        // Inject computed storage metadata profiles
+        // if (infrastructureRow) {
+        //     $('#storage-total').text(infrastructureRow.Total_Capacity + " GB");
+        //     $('#storage-util-pct').text(infrastructureRow.Storage_Utilization);
+        //     $('#storage-avail-gb').text(infrastructureRow.Available_Storage + " GB Free");
+        //     $('#storage-slider').css('width', infrastructureRow.Storage_Utilization);
+        // }
+
+        setTimeout(() => {
+            console.log("This runs after 2 seconds!");
+            if (infrastructureRow) {
+                $('#storage-total').text(infrastructureRow.Total_Capacity + " GB");
+                $('#storage-util-pct').text(infrastructureRow.Storage_Utilization);
+                $('#storage-avail-gb').text(infrastructureRow.Available_Storage + " GB Free");
+                $('#storage-slider').css('width', infrastructureRow.Storage_Utilization);
+            }
+        }, 2000);
+
+        //////////////////////////////////////////////////
+        // Show the popup on click
+        $('.open-popup').on('click', function () {
+            //alert('h');
+            let jsonid = $(this).attr('jsonid');
+            console.log(jsonid);
+            jsonRecordID = jsonid;
+            $('#data-rows-popup').empty();
+            var _app = records.filter(u => u.jsonRecordID == jsonid);
+            if (_app.length > 0) {
+                $("#issuelabel").text(_app[0].Application);
+            }
+
+
+            for (i = 0; i < records.length; i++) {
+                //console.log(records[i].jsonRecordID + '    ' + jsonid);
+                if (records[i].jsonRecordID == jsonid) {
+                    console.log(records[i].Issue_Description + '   inside ' + jsonid);
+                    //// <td> <input type="date" id="edit-reported" recid=${subitem.RecordID} value=${subitem.Issue_Reported_Date} style="width: 150px;border: 1px solid #dadce0;;"> </td>
+                    ///// <td> <input type="date" id="edit-resolution" recid=${subitem.RecordID} value=${subitem.Issue_Resolution_Date} style="width: 150px;border: 1px solid #dadce0;;"> </td>
+                    ////<td><input type="button" value="save" /> </td>
+                    records[i].IssuesList.forEach(subitem => {
+                        let tablerowpopup = `<tr class="issue-row">
+                                                    <td>${subitem.RecordID}</td>
+                                                    <td>${subitem.ApplicationID}</td>
+                                                    <td>${subitem.Application}</td>
+                                                    <td>${subitem.Issue_Description}</td>
+                                                    <td>${subitem.Issue_Reported_Date}</td>
+                                                    <td>${subitem.Issue_Reported_Time}</td>
+                                                    <td>${subitem.Issue_Resolution_Date}</td>
+                                                    <td>${subitem.Issue_Resolution_Time}</td>
+                                                    <td>${subitem.Duration}</td>
+                                                    <td>${subitem.Resolution_Status}</td>
+                                                    <td>${subitem.multimachineinfo_RecordID}</td>
+                                                    <td>${subitem.EntryDate.split('T')[0]}</td>
+
+                                                `
+                        $('#data-rows-popup').append(tablerowpopup);
+                    });
+                    // $("#edit-desc").text(records[i].Issue_Description);
+                    // $("#edit-reported").val(records[i].Issue_Reported_Date);
+                    // $("#edit-resolved").val(records[i].Issue_Resolution_Date);
+                }
+            }
+            $('#my-popup').fadeIn();
+        });
+
+        setTimeout(() => {
+            //generateIssuePie(records);
+            generateIssuePie(records)
+        } , 5000);
+
+        ///////////////////////////////////////////////////////
+        //add Issue line graph
+        setTimeout(() => {
+            generateIssueGraph(records)
+        },3000);
+        generateIssueGraph(records);
+
+    }
+
+    /////////////////////////////////////////////////////////////
+    function generateIssueGraph(m_data) 
+    {
+
+        m_data.forEach(i => {
+            if (i.IssuesList.length > 0) {
+                // 2. Count total matches
+                let openCount = 0;
+                let resolvedCount = 0;
+                var _openbar = '#open-bar_' + i.jsonRecordID;
+                var _resolvedbar = '#resolved-bar_' + i.jsonRecordID;
+                $(_openbar).css('width', 0 + '%');
+                $(_resolvedbar).css('width', 0 + '%');
+
+                i.IssuesList.forEach(issue => {
+                    //$('#storage-slider').css('width', '0%');
+                    if (issue.Resolution_Status === 'Open') openCount++;
+                    if (issue.Resolution_Status === 'Resolved') resolvedCount++;
+                });
+                const totalIssues = openCount + resolvedCount;
+                // 3. Calculate percentages for bar widths
+                const openPercentage = i.IssuesList.length > 0 ? (openCount / totalIssues) * 100 : 0;
+                const resolvedPercentage = i.IssuesList.length > 0 ? (resolvedCount / totalIssues) * 100 : 0;
+                console.log('application ' + i.Application);
+                console.log('openPercentage ' + openPercentage)
+                console.log('resolvedPercentage ' + resolvedPercentage)
+
+                // Apply widths smoothly via CSS transitions
+                
+                $(_openbar).css('width', openPercentage + '%').attr('data-tooltip', `Open: ${openCount} (${openPercentage.toFixed(1)}%)`);;
+                $(_resolvedbar).css('width', resolvedPercentage + '%').attr('data-tooltip', `Resolved: ${resolvedCount} (${resolvedPercentage.toFixed(1)}%)`);;
+
+                // $('#open-bar').css('width', openPercentage + '%');
+                // $('#resolved-bar').css('width', resolvedPercentage + '%');
+
+                 }
+                    else {        }
+        });
+    }
+
+
+    ////////////////////////////////////////////////////////////
+    function generateIssuePie(m_data) {
+        // 1. Count the occurrences of each status
+        let openCount = 0;
+        let resolvedCount = 0;
+        let noIssueCount = 0;
+
+        // var data_1 = {
+        //     "IssuesList": [
+
+        //         { "RecordID": 13, "Resolution_Status": "Resolved" },
+        //         { "RecordID": 27, "Resolution_Status": "Open" },
+        //         { "RecordID": 28, "Resolution_Status": "Open" },
+        //         { "RecordID": 29, "Resolution_Status": "Open" }
+        //     ]
+        // };
+
+        m_data.forEach(i => {
+            let openCount = 0;
+            let resolvedCount = 0;
+            let noIssueCount = 0;
+
+            console.log(i.IssuesList.length);
+            if (i.IssuesList.length > 0) {
+
+                i.IssuesList.forEach(item => {
+                    if (item.Resolution_Status === "Open") {
+                        openCount++;
+                    } else if (item.Resolution_Status === "Resolved") {
+                        resolvedCount++;
+                    }
+                });
+            } else if (i.IssuesList.length == 0) { noIssueCount = 1; }
+            ///////////////////////////////////////////////
+            // 2. Render the Pie Chart using Chart.js
+            _id = 'IssuesPieChart_' + i.jsonRecordID;
+            _idd = '\'' + _id + '\'';
+            console.log(_id);
+            console.log(_idd);
+            const ctx = document.getElementById(_id).getContext('2d');
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    //labels: ['Open', 'Resolved', 'NoIssue'],
+                    datasets: [{
+                        data: [openCount, resolvedCount, noIssueCount],
+                        backgroundColor: [
+                            '#fce8e6', // Soft Red for Open
+                            '#e6f4ea',  // Soft Green for Resolved
+                            '#fafa33'  // Soft Green for Resolved
+                        ],
+                        borderColor: [
+                            '#f28b82', // Darker Red Border
+                            '#81c995',  // Darker Green Border
+                            '#ffdf00' // Darker Red Border
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    animation: {
+                        duration: 5000, // Slown down to 2 full seconds (Default is 1000)
+                        easing: 'easeOutQuart',
+                    }//,
+
+                    // plugins: {
+                    //     legend: {
+                    //         position: 'left', // Positions labels below the graph
+                    //     },
+                    //     title: {
+                    //         display: true,
+                    //         text: 'Issue Resolution Status'
+                    //     }
+                    // }
+                }
+            });
+
+
+        });
+
+        ///////////////////////////////////////////////////////////////
+        // data_1.IssuesList.forEach(item => {
+        //     if (item.Resolution_Status === "Open") {
+        //         openCount++;
+        //     } else if (item.Resolution_Status === "Resolved") {
+        //         resolvedCount++;
+        //     }
+        // });
+        // console.log(data_1.IssuesList.length);
+        // if (data_1.IssuesList.length == 0) { noIssueCount = 1; }
+        // //noIssueCount=1;
+        // console.log(openCount);
+        // console.log(resolvedCount);
+        // console.log(noIssueCount);
+
+        // ///////////////////////////////////////////////
+        // // 2. Render the Pie Chart using Chart.js
+
+        // const ctx = document.getElementById('issuesPieChart_1').getContext('2d');
+        // new Chart(ctx, {
+        //     type: 'pie',
+        //     data: {
+        //         labels: ['Open', 'Resolved', 'NoIssue'],
+        //         datasets: [{
+        //             data: [openCount, resolvedCount, noIssueCount],
+        //             backgroundColor: [
+        //                 '#fce8e6', // Soft Red for Open
+        //                 '#e6f4ea',  // Soft Green for Resolved
+        //                 '#fafa33'  // Soft Green for Resolved
+        //             ],
+        //             borderColor: [
+        //                 '#f28b82', // Darker Red Border
+        //                 '#81c995',  // Darker Green Border
+        //                 '#ffdf00' // Darker Red Border
+        //             ],
+        //             borderWidth: 1
+        //         }]
+        //     },
+        //     options: {
+        //         responsive: true,
+        //         plugins: {
+        //             legend: {
+        //                 position: 'left', // Positions labels below the graph
+        //             },
+        //             title: {
+        //                 display: true,
+        //                 text: 'Issue Resolution Status'
+        //             }
+        //         }
+        //     }
+        // });
+    }
+
+</script>
+
+</html>

@@ -1,0 +1,376 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\VSProject\\MultimachineWeb\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{AAB13C9B-6160-4BF4-A594-4563229D2EB6}|MultimachineWeb\\MultimachineWeb.csproj|c:\\vsproject\\multimachineweb\\multimachineweb\\git.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{AAB13C9B-6160-4BF4-A594-4563229D2EB6}|MultimachineWeb\\MultimachineWeb.csproj|solutionrelative:multimachineweb\\git.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AAB13C9B-6160-4BF4-A594-4563229D2EB6}|MultimachineWeb\\MultimachineWeb.csproj|c:\\vsproject\\multimachineweb\\multimachineweb\\multimachineweb.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{AAB13C9B-6160-4BF4-A594-4563229D2EB6}|MultimachineWeb\\MultimachineWeb.csproj|solutionrelative:multimachineweb\\multimachineweb.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AAB13C9B-6160-4BF4-A594-4563229D2EB6}|MultimachineWeb\\MultimachineWeb.csproj|c:\\vsproject\\multimachineweb\\multimachineweb\\classes\\clsupdate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AAB13C9B-6160-4BF4-A594-4563229D2EB6}|MultimachineWeb\\MultimachineWeb.csproj|solutionrelative:multimachineweb\\classes\\clsupdate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AAB13C9B-6160-4BF4-A594-4563229D2EB6}|MultimachineWeb\\MultimachineWeb.csproj|c:\\vsproject\\multimachineweb\\multimachineweb\\views\\machine\\showit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{AAB13C9B-6160-4BF4-A594-4563229D2EB6}|MultimachineWeb\\MultimachineWeb.csproj|solutionrelative:multimachineweb\\views\\machine\\showit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AAB13C9B-6160-4BF4-A594-4563229D2EB6}|MultimachineWeb\\MultimachineWeb.csproj|c:\\vsproject\\multimachineweb\\multimachineweb\\classes\\clsmultimachineinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AAB13C9B-6160-4BF4-A594-4563229D2EB6}|MultimachineWeb\\MultimachineWeb.csproj|solutionrelative:multimachineweb\\classes\\clsmultimachineinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AAB13C9B-6160-4BF4-A594-4563229D2EB6}|MultimachineWeb\\MultimachineWeb.csproj|c:\\vsproject\\multimachineweb\\multimachineweb\\controllers\\machinecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AAB13C9B-6160-4BF4-A594-4563229D2EB6}|MultimachineWeb\\MultimachineWeb.csproj|solutionrelative:multimachineweb\\controllers\\machinecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AAB13C9B-6160-4BF4-A594-4563229D2EB6}|MultimachineWeb\\MultimachineWeb.csproj|c:\\vsproject\\multimachineweb\\multimachineweb\\controllers\\multimachinecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AAB13C9B-6160-4BF4-A594-4563229D2EB6}|MultimachineWeb\\MultimachineWeb.csproj|solutionrelative:multimachineweb\\controllers\\multimachinecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AAB13C9B-6160-4BF4-A594-4563229D2EB6}|MultimachineWeb\\MultimachineWeb.csproj|c:\\vsproject\\multimachineweb\\multimachineweb\\wwwroot\\lib\\style.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{AAB13C9B-6160-4BF4-A594-4563229D2EB6}|MultimachineWeb\\MultimachineWeb.csproj|solutionrelative:multimachineweb\\wwwroot\\lib\\style.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AAB13C9B-6160-4BF4-A594-4563229D2EB6}|MultimachineWeb\\MultimachineWeb.csproj|c:\\vsproject\\multimachineweb\\multimachineweb\\classes\\clsissuedata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AAB13C9B-6160-4BF4-A594-4563229D2EB6}|MultimachineWeb\\MultimachineWeb.csproj|solutionrelative:multimachineweb\\classes\\clsissuedata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AAB13C9B-6160-4BF4-A594-4563229D2EB6}|MultimachineWeb\\MultimachineWeb.csproj|c:\\vsproject\\multimachineweb\\multimachineweb\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AAB13C9B-6160-4BF4-A594-4563229D2EB6}|MultimachineWeb\\MultimachineWeb.csproj|solutionrelative:multimachineweb\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AAB13C9B-6160-4BF4-A594-4563229D2EB6}|MultimachineWeb\\MultimachineWeb.csproj|c:\\vsproject\\multimachineweb\\multimachineweb\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{AAB13C9B-6160-4BF4-A594-4563229D2EB6}|MultimachineWeb\\MultimachineWeb.csproj|solutionrelative:multimachineweb\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AAB13C9B-6160-4BF4-A594-4563229D2EB6}|MultimachineWeb\\MultimachineWeb.csproj|c:\\vsproject\\multimachineweb\\multimachineweb\\classes\\applicationsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AAB13C9B-6160-4BF4-A594-4563229D2EB6}|MultimachineWeb\\MultimachineWeb.csproj|solutionrelative:multimachineweb\\classes\\applicationsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AAB13C9B-6160-4BF4-A594-4563229D2EB6}|MultimachineWeb\\MultimachineWeb.csproj|c:\\vsproject\\multimachineweb\\multimachineweb\\views\\machine\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{AAB13C9B-6160-4BF4-A594-4563229D2EB6}|MultimachineWeb\\MultimachineWeb.csproj|solutionrelative:multimachineweb\\views\\machine\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AAB13C9B-6160-4BF4-A594-4563229D2EB6}|MultimachineWeb\\MultimachineWeb.csproj|c:\\vsproject\\multimachineweb\\multimachineweb\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AAB13C9B-6160-4BF4-A594-4563229D2EB6}|MultimachineWeb\\MultimachineWeb.csproj|solutionrelative:multimachineweb\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AAB13C9B-6160-4BF4-A594-4563229D2EB6}|MultimachineWeb\\MultimachineWeb.csproj|c:\\vsproject\\multimachineweb\\multimachineweb\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{AAB13C9B-6160-4BF4-A594-4563229D2EB6}|MultimachineWeb\\MultimachineWeb.csproj|solutionrelative:multimachineweb\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AAB13C9B-6160-4BF4-A594-4563229D2EB6}|MultimachineWeb\\MultimachineWeb.csproj|c:\\vsproject\\multimachineweb\\multimachineweb\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{AAB13C9B-6160-4BF4-A594-4563229D2EB6}|MultimachineWeb\\MultimachineWeb.csproj|solutionrelative:multimachineweb\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AAB13C9B-6160-4BF4-A594-4563229D2EB6}|MultimachineWeb\\MultimachineWeb.csproj|c:\\vsproject\\multimachineweb\\multimachineweb\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{AAB13C9B-6160-4BF4-A594-4563229D2EB6}|MultimachineWeb\\MultimachineWeb.csproj|solutionrelative:multimachineweb\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 379,
+          "SelectedChildIndex": 14,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e506b91c-c606-466a-90a9-123d1d1e12b3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{6d4078d1-5951-4ed1-ac0e-0a8099c1cce5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{c9c0ae26-aa77-11d2-b3f0-0000f87570ee}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1652979910:0:{83107a3e-496a-485e-b455-16ddb978e55e}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:159390704:0:{bf84ea66-d821-4dba-b1b1-2777d8574775}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:2:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Git.txt",
+              "DocumentMoniker": "C:\\VSProject\\MultimachineWeb\\MultimachineWeb\\Git.txt",
+              "RelativeDocumentMoniker": "MultimachineWeb\\Git.txt",
+              "ToolTip": "C:\\VSProject\\MultimachineWeb\\MultimachineWeb\\Git.txt",
+              "RelativeToolTip": "MultimachineWeb\\Git.txt",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAA8AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2026-09-03T07:11:21.464Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MultimachineWeb",
+              "DocumentMoniker": "C:\\VSProject\\MultimachineWeb\\MultimachineWeb\\MultimachineWeb.csproj",
+              "RelativeDocumentMoniker": "MultimachineWeb\\MultimachineWeb.csproj",
+              "ToolTip": "C:\\VSProject\\MultimachineWeb\\MultimachineWeb\\MultimachineWeb.csproj",
+              "RelativeToolTip": "MultimachineWeb\\MultimachineWeb.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-09-03T06:57:14.379Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Style.css",
+              "DocumentMoniker": "C:\\VSProject\\MultimachineWeb\\MultimachineWeb\\wwwroot\\lib\\Style.css",
+              "RelativeDocumentMoniker": "MultimachineWeb\\wwwroot\\lib\\Style.css",
+              "ToolTip": "C:\\VSProject\\MultimachineWeb\\MultimachineWeb\\wwwroot\\lib\\Style.css",
+              "RelativeToolTip": "MultimachineWeb\\wwwroot\\lib\\Style.css",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACgAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-08-31T14:19:05.017Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ClsUpdate.cs",
+              "DocumentMoniker": "C:\\VSProject\\MultimachineWeb\\MultimachineWeb\\Classes\\ClsUpdate.cs",
+              "RelativeDocumentMoniker": "MultimachineWeb\\Classes\\ClsUpdate.cs",
+              "ToolTip": "C:\\VSProject\\MultimachineWeb\\MultimachineWeb\\Classes\\ClsUpdate.cs",
+              "RelativeToolTip": "MultimachineWeb\\Classes\\ClsUpdate.cs",
+              "ViewState": "AQIAACoAAAAAAAAAAAAqwD0AAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-17T13:17:24.981Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "MachineController.cs",
+              "DocumentMoniker": "C:\\VSProject\\MultimachineWeb\\MultimachineWeb\\Controllers\\MachineController.cs",
+              "RelativeDocumentMoniker": "MultimachineWeb\\Controllers\\MachineController.cs",
+              "ToolTip": "C:\\VSProject\\MultimachineWeb\\MultimachineWeb\\Controllers\\MachineController.cs",
+              "RelativeToolTip": "MultimachineWeb\\Controllers\\MachineController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-17T07:31:59.764Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "MultimachineController.cs",
+              "DocumentMoniker": "C:\\VSProject\\MultimachineWeb\\MultimachineWeb\\Controllers\\MultimachineController.cs",
+              "RelativeDocumentMoniker": "MultimachineWeb\\Controllers\\MultimachineController.cs",
+              "ToolTip": "C:\\VSProject\\MultimachineWeb\\MultimachineWeb\\Controllers\\MultimachineController.cs",
+              "RelativeToolTip": "MultimachineWeb\\Controllers\\MultimachineController.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAACAAAAArAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-17T12:11:27.966Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "ApplicationSettings.cs",
+              "DocumentMoniker": "C:\\VSProject\\MultimachineWeb\\MultimachineWeb\\Classes\\ApplicationSettings.cs",
+              "RelativeDocumentMoniker": "MultimachineWeb\\Classes\\ApplicationSettings.cs",
+              "ToolTip": "C:\\VSProject\\MultimachineWeb\\MultimachineWeb\\Classes\\ApplicationSettings.cs",
+              "RelativeToolTip": "MultimachineWeb\\Classes\\ApplicationSettings.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-17T13:20:53.349Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Showit.cshtml",
+              "DocumentMoniker": "C:\\VSProject\\MultimachineWeb\\MultimachineWeb\\Views\\Machine\\Showit.cshtml",
+              "RelativeDocumentMoniker": "MultimachineWeb\\Views\\Machine\\Showit.cshtml",
+              "ToolTip": "C:\\VSProject\\MultimachineWeb\\MultimachineWeb\\Views\\Machine\\Showit.cshtml",
+              "RelativeToolTip": "MultimachineWeb\\Views\\Machine\\Showit.cshtml",
+              "ViewState": "AQIAAPcEAAAAAAAAAAAAAAoFAAAjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-18T07:36:20.664Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\VSProject\\MultimachineWeb\\MultimachineWeb\\Program.cs",
+              "RelativeDocumentMoniker": "MultimachineWeb\\Program.cs",
+              "ToolTip": "C:\\VSProject\\MultimachineWeb\\MultimachineWeb\\Program.cs",
+              "RelativeToolTip": "MultimachineWeb\\Program.cs",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAAC0AAAAxAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-17T13:18:41.467Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ClsMultiMachineInfo.cs",
+              "DocumentMoniker": "C:\\VSProject\\MultimachineWeb\\MultimachineWeb\\Classes\\ClsMultiMachineInfo.cs",
+              "RelativeDocumentMoniker": "MultimachineWeb\\Classes\\ClsMultiMachineInfo.cs",
+              "ToolTip": "C:\\VSProject\\MultimachineWeb\\MultimachineWeb\\Classes\\ClsMultiMachineInfo.cs",
+              "RelativeToolTip": "MultimachineWeb\\Classes\\ClsMultiMachineInfo.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABwAAAA7AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-17T12:12:42.642Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ClsIssueData.cs",
+              "DocumentMoniker": "C:\\VSProject\\MultimachineWeb\\MultimachineWeb\\Classes\\ClsIssueData.cs",
+              "RelativeDocumentMoniker": "MultimachineWeb\\Classes\\ClsIssueData.cs",
+              "ToolTip": "C:\\VSProject\\MultimachineWeb\\MultimachineWeb\\Classes\\ClsIssueData.cs",
+              "RelativeToolTip": "MultimachineWeb\\Classes\\ClsIssueData.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAuAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-19T12:51:20.072Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\VSProject\\MultimachineWeb\\MultimachineWeb\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "MultimachineWeb\\Properties\\launchSettings.json",
+              "ToolTip": "C:\\VSProject\\MultimachineWeb\\MultimachineWeb\\Properties\\launchSettings.json",
+              "RelativeToolTip": "MultimachineWeb\\Properties\\launchSettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-08-26T12:05:44.019Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\VSProject\\MultimachineWeb\\MultimachineWeb\\Views\\Machine\\Index.cshtml",
+              "RelativeDocumentMoniker": "MultimachineWeb\\Views\\Machine\\Index.cshtml",
+              "ToolTip": "C:\\VSProject\\MultimachineWeb\\MultimachineWeb\\Views\\Machine\\Index.cshtml",
+              "RelativeToolTip": "MultimachineWeb\\Views\\Machine\\Index.cshtml",
+              "ViewState": "AQIAAGEBAAAAAAAAAAAAAHUBAAAyAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-17T07:32:19.98Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\VSProject\\MultimachineWeb\\MultimachineWeb\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "MultimachineWeb\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\VSProject\\MultimachineWeb\\MultimachineWeb\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "MultimachineWeb\\Controllers\\HomeController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-18T07:02:45.706Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\VSProject\\MultimachineWeb\\MultimachineWeb\\appsettings.json",
+              "RelativeDocumentMoniker": "MultimachineWeb\\appsettings.json",
+              "ToolTip": "C:\\VSProject\\MultimachineWeb\\MultimachineWeb\\appsettings.json",
+              "RelativeToolTip": "MultimachineWeb\\appsettings.json",
+              "ViewState": "AQIAAAUAAAAAAAAAAADwvy4AAAADAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-08-17T07:33:22.914Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "C:\\VSProject\\MultimachineWeb\\MultimachineWeb\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "MultimachineWeb\\appsettings.Development.json",
+              "ToolTip": "C:\\VSProject\\MultimachineWeb\\MultimachineWeb\\appsettings.Development.json",
+              "RelativeToolTip": "MultimachineWeb\\appsettings.Development.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-08-17T07:37:52.587Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\VSProject\\MultimachineWeb\\MultimachineWeb\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "MultimachineWeb\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\VSProject\\MultimachineWeb\\MultimachineWeb\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "MultimachineWeb\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAAB4AAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-17T07:37:40.745Z"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 374,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 74,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
