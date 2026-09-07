@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "z0rVZrkDfaVc5rwZd3xi6Oi8rcLh9AhIz05r9Qx12Ic=",
+  "Hash": "MWEsHmmPX9Bu30+zYBlqel10liNTeImBAXSYZqxdgeM=",
   "Source": "MultimachineWeb",
   "BasePath": "_content/MultimachineWeb",
   "Mode": "Default",
@@ -967,6 +967,25 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\LICENSE"
     },
     {
+      "Identity": "C:\\VSProject\\MultimachineWeb\\MultimachineWeb\\wwwroot\\lib\\chart.js",
+      "SourceId": "MultimachineWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\VSProject\\MultimachineWeb\\MultimachineWeb\\wwwroot\\",
+      "BasePath": "_content/MultimachineWeb",
+      "RelativePath": "lib/chart.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lib\\chart.js"
+    },
+    {
       "Identity": "C:\\VSProject\\MultimachineWeb\\MultimachineWeb\\wwwroot\\lib\\jquery\\dist\\jquery.js",
       "SourceId": "MultimachineWeb",
       "SourceType": "Discovered",
@@ -1193,6 +1212,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Identity": "C:\\VSProject\\MultimachineWeb\\MultimachineWeb\\wwwroot\\lib\\Style.css",
+      "SourceId": "MultimachineWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\VSProject\\MultimachineWeb\\MultimachineWeb\\wwwroot\\",
+      "BasePath": "_content/MultimachineWeb",
+      "RelativePath": "lib/Style.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lib\\Style.css"
     }
   ]
 }

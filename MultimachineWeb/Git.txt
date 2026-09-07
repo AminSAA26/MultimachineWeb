@@ -10,3 +10,19 @@ URL from your GitHub, GitLab, or Bitbucket page (it looks like https://github.co
 
 git remote add origin <your-repository-URL> — Links your local repository to the remote website.
 git push -u origin main — Pushes your local code to the remote repository and sets the default tracking branch.
+
+----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+https://github.com/AminSAA26/MultimachineWeb
+
+Invoke-WebRequest -Uri https://github.com/actions/runner/releases/download/v2.337.0/actions-runner-win-x64-2.337.0.zip -OutFile actions-runner-win-x64-2.337.0.zip
+
+
+Invoke-WebRequest -Uri https://github.com/actions/runner/releases/download/v2.337.0/actions-runner-win-x64-2.337.0.zip -OutFile actions-runner-win-x64-2.337.0.zip
+
+./config.cmd --url https://github.com/AminSAA26/MultimachineWeb --token CJTX4TNPIXKUEWWA26VH5YTKTZQUU
+
+runner-name			MYCICD
+additional lable    iis-servercicd   (need to match in yml file)
+
+name of work folder  _work

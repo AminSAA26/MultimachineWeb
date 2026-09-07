@@ -375,7 +375,7 @@
                             <th>Backup Integrity Status</th>
                             <th>Incident Description</th>
                             <th>Incident Status</th>
-                            <th>Responsible Engineer</th>
+                            <th>Issue Status</th>
                         </tr>
                     </thead>
                     <tbody id="data-rows">
@@ -975,17 +975,18 @@
 
 
 
-    // Listen for the click event on your search button
+    // Listen for the click event on your search button   
     $('#search').on('click', function () {
 
         // 1. Collect filter values from your input text/date boxes
         let server = $('#input-servername').val(); // Example input selector
         let date = $('#input-rundate').val();       // Example date/text selector
-        alert(server + "    " + date);
+        //alert(server + "    " + date);
         //return;
-        // 2. Fire the asynchronous GET request
+        // 2. Fire the asynchronous GET request  ///@Url.Content("~/api/Multimachine/get")   
+        // url: '/api/Multimachine/get',
         $.ajax({
-            url: '/api/Multimachine/get', // Full route based on your controller base
+            url: '@Url.Content("~/api/Multimachine/get")', // Full route based on your controller base
             type: 'GET',
             data: {
                 servername: server, // Key names must match C# parameter names exactly
@@ -997,7 +998,8 @@
                 window._JSON = jsonResponse;
                 if (window._JSON.message == '') { 
                     d = $(".dashboard-container");
-                    d[0].firstElementChild.childNodes[3].innerText = `Host Target: ${_json_update[0].Server_Name}  (${_json_update[0].Link_IPAddress}) | Environment: ${_json_update[0].Env} (${_json_update[0].Location_City_Country}) changed`;
+                    //d[0].firstElementChild.childNodes[3].innerText = `Host Target: ${_json_update[0].Server_Name}  (${_json_update[0].Link_IPAddress}) | Environment: ${_json_update[0].Env} (${_json_update[0].Location_City_Country}) changed`;
+                    d[0].firstElementChild.childNodes[3].innerText = `Host Target: | Environment:  `;
                     $("#total-apps").text(0);
                     $("#active-apps").text(0);
                     $("#backup-alerts").text(0);
@@ -1173,7 +1175,7 @@
 
         setTimeout(() => {
             //generateIssuePie(records);
-            generateIssuePie(records)
+       //     generateIssuePie(records)
         } , 5000);
 
         ///////////////////////////////////////////////////////
@@ -1182,6 +1184,8 @@
             generateIssueGraph(records)
         },3000);
         generateIssueGraph(records);
+
+        generateIssuePieOPT(records)
 
     }
 
@@ -1359,6 +1363,76 @@
         //     }
         // });
     }
+
+
+
+    function generateIssuePieOPT(m_data) {
+        m_data.forEach(i => {
+            // FIX 1: Removed the outer global variables.
+            // Counts must be initialized fresh for EACH individual record item.
+            let openCount = 0;
+            let resolvedCount = 0;
+            let noIssueCount = 0;
+
+            if (i.IssuesList && i.IssuesList.length > 0) {
+                i.IssuesList.forEach(item => {
+                    if (item.Resolution_Status === "Open") {
+                        openCount++;
+                    } else if (item.Resolution_Status === "Resolved") {
+                        resolvedCount++;
+                    }
+                });
+            } else {
+                // FIX 2: Correctly increment counter if there are no issues
+                noIssueCount++;
+            }
+
+            const _id = 'IssuesPieChart_' + i.jsonRecordID;
+            const canvasElement = document.getElementById(_id);
+
+            if (!canvasElement) return; // Guard clause if canvas doesn't exist yet
+
+            const ctx = canvasElement.getContext('2d');
+
+            // FIX 3: Destroy the previous chart instance if it exists
+            // to prevent canvas memory leaks and animation breaks.
+            if (window[_id] instanceof Chart) {
+                window[_id].destroy();
+            }
+
+            // Save the new chart instance globally linked to its specific ID
+            window[_id] = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    datasets: [{
+                        data: [openCount, resolvedCount, noIssueCount],
+                        backgroundColor: [
+                            '#fce8e6', // Soft Red for Open
+                            '#e6f4ea', // Soft Green for Resolved
+                            '#faffbd'  // Soft Yellow for No Issue
+                        ],
+                        borderColor: [
+                            '#f28b82', // Darker Red Border
+                            '#81c995', // Darker Green Border
+                            '#ffdf00'  // Darker Yellow Border
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    animation: {
+                        duration: 2000, // FIX 4: Changed to 2000ms (2 seconds) so it finishes well before any refresh loop
+                        easing: 'easeOutQuart',
+                    }
+                }
+            });
+        });
+    }
+
+    // FIX 5: Remove the automatic recursive setTimeout loop from inside the function itself.
+    // Call it once when your DOM or data is ready:
+    //generateIssuePie(records);
 
 </script>
 

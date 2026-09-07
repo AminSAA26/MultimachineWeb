@@ -72,7 +72,8 @@ namespace MultimachineWeb.Classes
                     using (SqlCommand cmd = conn.CreateCommand())
                     {
                         //string _sql = "select * from multimachineinfo where cast(EnteredDate as date) ='2026-08-17'";
-                        string _sql = $"select * from automate.multimachineinfo where cast(EnteredDate as date) ='{_datetime}'";
+                        //string _sql = $"select * from automate.multimachineinfo where cast(EnteredDate as date) ='{_datetime}'";
+                        string _sql = $"select * from automate.multimachineinfo where cast(EnteredDate as date) ='{_datetime}' and Server_Name='{_servername}'";
                         cmd.CommandText = _sql;
                         SqlDataReader reader = cmd.ExecuteReader();
                         while (reader.Read())
@@ -86,7 +87,7 @@ namespace MultimachineWeb.Classes
                             _info.Link_IPAddress = reader["Link_IPAddress"].ToString();
                             _info.ApplicationID = reader["ApplicationID"].ToString();
                             _info.Application = reader["Application"].ToString();
-                            _info.Last_Backup_Date = (reader["Last_Backup_Date"] != DBNull.Value)? Convert.ToDateTime(reader["Last_Backup_Date"].ToString()):null;
+                            _info.Last_Backup_Date = (reader["Last_Backup_Date"] != DBNull.Value)? Convert.ToDateTime( reader["Last_Backup_Date"].ToString()):null;
                             _info.Backup_Location = reader["Backup_Location"].ToString();
                             _info.Backup_Comparison = reader["Backup_Comparison"].ToString();
                             _info.Storage_Utilization = reader["Storage_Utilization"].ToString();

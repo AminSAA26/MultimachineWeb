@@ -17,6 +17,10 @@
       "PackagePath": "staticwebassets\\js\\site.js"
     },
     {
+      "Id": "C:\\VSProject\\MultimachineWeb\\MultimachineWeb\\wwwroot\\lib\\Style.css",
+      "PackagePath": "staticwebassets\\lib\\Style.css"
+    },
+    {
       "Id": "C:\\VSProject\\MultimachineWeb\\MultimachineWeb\\wwwroot\\lib\\bootstrap\\LICENSE",
       "PackagePath": "staticwebassets\\lib\\bootstrap"
     },
@@ -195,6 +199,10 @@
     {
       "Id": "C:\\VSProject\\MultimachineWeb\\MultimachineWeb\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "C:\\VSProject\\MultimachineWeb\\MultimachineWeb\\wwwroot\\lib\\chart.js",
+      "PackagePath": "staticwebassets\\lib\\chart.js"
     },
     {
       "Id": "C:\\VSProject\\MultimachineWeb\\MultimachineWeb\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",

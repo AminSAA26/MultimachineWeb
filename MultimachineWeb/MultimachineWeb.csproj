@@ -7,25 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Views\Machine\Showit.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="8.0.0" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="7.0.2" />
   </ItemGroup>
 
-  <ItemGroup>
-    <UpToDateCheckInput Remove="Views\Machine\Showit.cshtml" />
-  </ItemGroup>
 
   <ItemGroup>
-    <_ContentIncludedByDefault Remove="Views\Machine\Showit.cshtml" />
     <_ContentIncludedByDefault Remove="wwwroot\lib\Style.css" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Include="Views\Machine\Showit.cshtml" />
-  </ItemGroup>
 
 </Project>

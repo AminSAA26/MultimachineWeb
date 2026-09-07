@@ -387,6 +387,7 @@ C:\VSProject\MultimachineWeb\MultimachineWeb\obj\Debug\net8.0\MultimachineWeb.Mv
 C:\VSProject\MultimachineWeb\MultimachineWeb\obj\Debug\net8.0\MultimachineWeb.MvcApplicationPartsAssemblyInfo.cache
 C:\VSProject\MultimachineWeb\MultimachineWeb\obj\Debug\net8.0\MultimachineWeb.RazorAssemblyInfo.cache
 C:\VSProject\MultimachineWeb\MultimachineWeb\obj\Debug\net8.0\MultimachineWeb.RazorAssemblyInfo.cs
+C:\VSProject\MultimachineWeb\MultimachineWeb\obj\Debug\net8.0\MultimachineWeb.sourcelink.json
 C:\VSProject\MultimachineWeb\MultimachineWeb\obj\Debug\net8.0\staticwebassets.build.json
 C:\VSProject\MultimachineWeb\MultimachineWeb\obj\Debug\net8.0\staticwebassets.development.json
 C:\VSProject\MultimachineWeb\MultimachineWeb\obj\Debug\net8.0\staticwebassets\msbuild.MultimachineWeb.Microsoft.AspNetCore.StaticWebAssets.props
@@ -404,4 +405,3 @@ C:\VSProject\MultimachineWeb\MultimachineWeb\obj\Debug\net8.0\refint\Multimachin
 C:\VSProject\MultimachineWeb\MultimachineWeb\obj\Debug\net8.0\MultimachineWeb.pdb
 C:\VSProject\MultimachineWeb\MultimachineWeb\obj\Debug\net8.0\MultimachineWeb.genruntimeconfig.cache
 C:\VSProject\MultimachineWeb\MultimachineWeb\obj\Debug\net8.0\ref\MultimachineWeb.dll
-C:\VSProject\MultimachineWeb\MultimachineWeb\obj\Debug\net8.0\MultimachineWeb.sourcelink.json
