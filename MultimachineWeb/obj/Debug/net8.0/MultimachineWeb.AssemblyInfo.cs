@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MultimachineWeb")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+532cf42b5a7d178c84493d925f7ca2c3b2e43812")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b9a0a97620d9604e1a18f1d72cf8074f063cc63f")]
 [assembly: System.Reflection.AssemblyProductAttribute("MultimachineWeb")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MultimachineWeb")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
