@@ -5,7 +5,7 @@ on:
     branches: [ "main" ] # Triggers whenever code is pushed to main
 
 jobs:
-  deploy:
+  deploy-localmachine:
     runs-on: [self-hosted, iis-servercicd] # Targets your local machine runner
 
     steps:
@@ -32,3 +32,33 @@ jobs:
         Start-WebAppPool -Name "MultiDashboard"
       shell: powershell
 
+  deploy-saavm:
+    runs-on: [self-hosted, iis-servercicdVM] # Targets your local machine runner
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Stop IIS Application Pool
+      run: |
+        Import-Module WebAdministration
+        # Stops the App Pool to unlock files for deployment
+        Stop-WebAppPool -Name "MultiDashboard"
+      shell: powershell
+
+
+    - name: Publish and Deploy Application
+      run: |
+        dotnet publish -c Release -o "C:\inetpub\wwwroot\MultiDashboard\Publish"
+      shell: powershell
+
+    - name: Start IIS Application Pool
+      if: always() # Ensures the app turns back on even if publishing fails
+      run: |
+        Import-Module WebAdministration
+        Start-WebAppPool -Name "MultiDashboard"
+      shell: powershell
+
+ 
+ 
+ 
