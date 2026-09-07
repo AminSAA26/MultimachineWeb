@@ -12,20 +12,23 @@ jobs:
     - name: Checkout Code
       uses: actions/checkout@v4
 
-    - name: Stop IIS Website
+    - name: Stop IIS Application Pool
       run: |
         Import-Module WebAdministration
-        Stop-WebSite -Name "MultiDashboard"
+        # Stops the App Pool to unlock files for deployment
+        Stop-WebAppPool -Name "MultiDashboard"
       shell: powershell
+
 
     - name: Publish and Deploy Application
       run: |
         dotnet publish -c Release -o "C:\inetpub\wwwroot\MultiDashboard\Publish"
       shell: powershell
 
-    - name: Start IIS Website
-      if: always() # Ensures the site turns back on even if the build failed
+    - name: Start IIS Application Pool
+      if: always() # Ensures the app turns back on even if publishing fails
       run: |
         Import-Module WebAdministration
-        Start-WebSite -Name "MultiDashboard"
+        Start-WebAppPool -Name "MultiDashboard"
       shell: powershell
+
