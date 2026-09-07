@@ -12,14 +12,6 @@ jobs:
     - name: Checkout Code
       uses: actions/checkout@v4
 
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: '8.0' # Match your app's version
-      env:
-        # Forces .NET to install inside the runner's user profile space instead of Program Files
-        DOTNET_INSTALL_DIR: ${{ github.workspace }}\.dotnet  
-
     - name: Stop IIS Website
       run: |
         Import-Module WebAdministration
