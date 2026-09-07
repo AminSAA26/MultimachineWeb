@@ -26,3 +26,47 @@ runner-name			MYCICD
 additional lable    iis-servercicd   (need to match in yml file)
 
 name of work folder  _work
+
+
+
+./config.cmd --url https://github.com/AminSAA26/MultimachineWeb --token xxxxxxxxxxxxxxxxxxxxxCJTX4TNPIXKUEWWA26VH5YTKTZQUU
+
+
+./config.cmd --url https://github.com/AminSAA26/MultimachineWeb --token CJTX4TK4GT4ETIW52PHW3WDKT26SY
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+name: CI/CD to Local IIS (.NET Core)
+
+on:
+  push:
+    branches: [ "main" ] # Triggers whenever code is pushed to main
+
+jobs:
+  deploy:
+    runs-on: [self-hosted, iis-servercicd] # Targets your local machine runner
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Stop IIS Application Pool
+      run: |
+        Import-Module WebAdministration
+        # Stops the App Pool to unlock files for deployment
+        Stop-WebAppPool -Name "MultiDashboard"
+      shell: powershell
+
+
+    - name: Publish and Deploy Application
+      run: |
+        dotnet publish -c Release -o "C:\inetpub\wwwroot\MultiDashboard\Publish"
+      shell: powershell
+
+    - name: Start IIS Application Pool
+      if: always() # Ensures the app turns back on even if publishing fails
+      run: |
+        Import-Module WebAdministration
+        Start-WebAppPool -Name "MultiDashboard"
+      shell: powershell
+
+-----------------------------------------------------------------------------------------------------------------------------------
